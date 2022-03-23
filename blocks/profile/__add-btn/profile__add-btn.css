@@ -2,10 +2,17 @@
   padding: 0;
   width: 150px;
   height: 50px;
-  background-color: #000;
+  background-color: transparent;
   border: 1px solid #fff;
   background-image: url(../../../images/profile__add-btn.svg);
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 }
+
+@media screen and (max-width: 700px) {
+  .profile__add-btn {
+    width: 100%;
+  }
+}
+
