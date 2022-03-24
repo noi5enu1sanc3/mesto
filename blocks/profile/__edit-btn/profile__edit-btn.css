@@ -8,6 +8,11 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  transition: opacity .6s ease-in-out;
+}
+
+.profile__edit-btn:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 700px) {
