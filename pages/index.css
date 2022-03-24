@@ -39,3 +39,4 @@
 @import url(../blocks/popup/__input-form/_username/popup__input-form_username.css);
 @import url(../blocks/popup/__input-form/_userinfo/popup__input-form_userinfo.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
+@import url(../blocks/popup/_status/popup_status_show.css);
