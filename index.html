@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body class="root">
-  <div class="page">
-    <header class="header">
-        <img src="./images/logo.svg" alt="логотип проекта Место" class="header__logo">
-    </header>
-    <main class="content">
-      <section class="profile">
-        <div class="profile__info">
-          <img src="./images/profile__avatar.jpg" alt="аватар пользователя" class="profile__avatar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="root">
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/logo.svg"
+          alt="логотип проекта Место"
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            src="./images/profile__avatar.jpg"
+            alt="аватар пользователя"
+            class="profile__avatar"
+          />
           <div class="profile__about">
             <div class="profile__name-edit-wrapper">
               <h1 class="profile__username">Онейрос</h1>
@@ -23,73 +30,96 @@
             </div>
             <p class="profile__userinfo">Исследователь снов</p>
           </div>
-        </div>
-        <button class="profile__add-btn"></button>
-      </section>
-      <section class="cards">
-        <ul class="cards__items">
-          <li class="cards__item">
-            <img src="./images/st-pete-dream.jpeg" alt="" class="cards__image">
-            <div class="cards__info">
-              <h2 class="cards__caption">Сон о Петербурге</h2>
-              <button class="cards__like-btn"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/moscow-dream.jpeg" alt="" class="cards__image">
-            <div class="cards__info">
-              <h2 class="cards__caption">Сон о Москве</h2>
-              <button class="cards__like-btn"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/taiga-dream.jpg" alt="" class="cards__image">
-            <div class="cards__info">
-              <h2 class="cards__caption">Сон о Тайге</h2>
-              <button class="cards__like-btn"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/caucasus-dream.jpeg" alt="" class="cards__image">
-            <div class="cards__info">
-              <h2 class="cards__caption">Сон о Кавказе</h2>
-              <button class="cards__like-btn"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/Baikal-dream.jpeg" alt="" class="cards__image">
-            <div class="cards__info">
-              <h2 class="cards__caption">Сон о Байкале</h2>
-              <button class="cards__like-btn"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/Sochi-dream.jpeg" alt="" class="cards__image">
-            <div class="cards__info">
-              <h2 class="cards__caption">Сон о Сочи</h2>
-              <button class="cards__like-btn"></button>
-            </div>
-          </li>
-        </ul>
-      </section>
-      <section class="popup">
-        <form class="popup__container">
-          <h2 class="popup__heading">Редактировать профиль</h2>
-          <input type="text" class="popup__input-form popup__input-form_username">
-          <input type="text" class="popup__input-form popup__input-form_userinfo">
-          <button type="submit" class="popup__save-btn">Сохранить</button>
-          <button class="popup__close-btn"></button>
-        </form>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-    </footer>
-  </div>
-  <script src="./index.js"></script>
-</body>
+          <button class="profile__add-btn"></button>
+        </section>
+        <section class="cards">
+          <ul class="cards__items">
+            <li class="cards__item">
+              <img
+                src="./images/st-pete-dream.jpeg"
+                alt=""
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h2 class="cards__caption">Сон о Петербурге</h2>
+                <button class="cards__like-btn"></button>
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./images/moscow-dream.jpeg"
+                alt=""
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h2 class="cards__caption">Сон о Москве</h2>
+                <button class="cards__like-btn"></button>
+              </div>
+            </li>
+            <li class="cards__item">
+              <img src="./images/taiga-dream.jpg" alt="" class="cards__image" />
+              <div class="cards__info">
+                <h2 class="cards__caption">Сон о Тайге</h2>
+                <button class="cards__like-btn"></button>
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./images/caucasus-dream.jpeg"
+                alt=""
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h2 class="cards__caption">Сон о Кавказе</h2>
+                <button class="cards__like-btn"></button>
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./images/Baikal-dream.jpeg"
+                alt=""
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h2 class="cards__caption">Сон о Байкале</h2>
+                <button class="cards__like-btn"></button>
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./images/Sochi-dream.jpeg"
+                alt=""
+                class="cards__image"
+              />
+              <div class="cards__info">
+                <h2 class="cards__caption">Сон о Сочи</h2>
+                <button class="cards__like-btn"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section class="popup">
+          <form class="popup__container">
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <input
+              type="text"
+              class="popup__input-form popup__input-form_username"
+              maxlength="15"
+            />
+            <input
+              type="text"
+              class="popup__input-form popup__input-form_userinfo"
+              maxlength="50"
+            />
+            <button type="submit" class="popup__save-btn">Сохранить</button>
+            <button class="popup__close-btn"></button>
+          </form>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+      </footer>
+    </div>
+    <script src="./index.js"></script>
+  </body>
 </html>
-          
-
-
-          
