@@ -10,6 +10,7 @@
   line-height: 1.22;
   font-weight: 400;
   transition: opacity .6s ease-in-out;
+  cursor: pointer;
 }
 
 .popup__save-btn:hover {
