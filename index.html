@@ -102,26 +102,30 @@
             </li>
           </ul>
         </section>
-        <section class="popup">
-          <form class="popup__container">
-            <h2 class="popup__heading">Редактировать профиль</h2>
-            <input
-              type="text"
-              class="popup__input-form popup__input-form_username"
-            />
-            <input
-              type="text"
-              class="popup__input-form popup__input-form_userinfo"
-            />
-            <button type="submit" class="popup__save-btn">Сохранить</button>
-            <button class="popup__close-btn"></button>
-          </form>
-        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
     </div>
+    <section class="popup">
+      <div class="popup__container">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form name="userProfileInfo" class="popup__form">
+          <input
+            name="username"
+            type="text"
+            class="popup__input-form popup__input-form_type_username"
+          />
+          <input
+            name="userinfo"
+            type="text"
+            class="popup__input-form popup__input-form_type_userinfo"
+          />
+          <button type="submit" class="popup__save-btn">Сохранить</button>
+        </form>
+        <button class="popup__close-btn"></button>
+      </div>
+    </section>
     <script src="./index.js"></script>
   </body>
 </html>
