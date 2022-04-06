@@ -34,72 +34,6 @@
         </section>
         <section class="cards">
           <ul class="cards__items">
-            <li class="cards__item">
-              <img
-                src="./images/st-pete-dream.jpeg"
-                alt="фото, загруженное пользователем"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__caption">Сон о Петербурге</h2>
-                <button type="button" class="cards__like-btn"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img
-                src="./images/moscow-dream.jpeg"
-                alt="фото, загруженное пользователем"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__caption">Сон о Москве</h2>
-                <button type="button" class="cards__like-btn"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img
-                src="./images/taiga-dream.jpg"
-                alt="фото, загруженное пользователем"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__caption">Сон о Тайге</h2>
-                <button type="button" class="cards__like-btn"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img
-                src="./images/caucasus-dream.jpeg"
-                alt="фото, загруженное пользователем"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__caption">Сон о Кавказе</h2>
-                <button type="button" class="cards__like-btn"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img
-                src="./images/Baikal-dream.jpeg"
-                alt="фото, загруженное пользователем"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__caption">Сон о Байкале</h2>
-                <button type="button" class="cards__like-btn"></button>
-              </div>
-            </li>
-            <li class="cards__item">
-              <img
-                src="./images/Sochi-dream.jpeg"
-                alt="фото, загруженное пользователем"
-                class="cards__image"
-              />
-              <div class="cards__info">
-                <h2 class="cards__caption">Сон о Сочи</h2>
-                <button type="button" class="cards__like-btn"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
@@ -130,6 +64,19 @@
         <button type="button" class="popup__close-btn"></button>
       </div>
     </section>
+    <template id="card">
+      <li class="cards__item">
+        <img
+          alt="фото, загруженное пользователем"
+          class="cards__image"
+        />
+        <div class="cards__info">
+          <h2 class="cards__caption"></h2>
+          <button type="button" class="cards__like-btn"></button>
+        </div>
+      </li>
+    </template>
     <script src="./index.js"></script>
   </body>
 </html>
+           
