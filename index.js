@@ -8,7 +8,7 @@ const formUsername = popup.querySelector('.popup__input-form_type_username');
 const formUserinfo = popup.querySelector('.popup__input-form_type_userinfo');
 const formElement = popup.querySelector('.popup__container');
 
-function addCards() {
+function addInitialCards() {
   const initialCards = [
     {
       name: 'Сон о Петербурге',
@@ -62,7 +62,7 @@ function formSubmitHandler(evt) {
   closePopupHandler();
 }
 
-window.addEventListener("load", addCards);
+window.addEventListener("load", addInitialCards);
 profileEditBtn.addEventListener('click', openPopupHandler);
 popupCloseBtn.addEventListener('click', closePopupHandler);
 formElement.addEventListener('submit', formSubmitHandler);
