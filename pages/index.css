@@ -21,11 +21,13 @@
 
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__like-btn/cards__like-btn.css);
+@import url(../blocks/cards/__like-btn/_status/cards__like-btn_status_active.css);
 @import url(../blocks/cards/__items/cards__items.css);
 @import url(../blocks/cards/__item/cards__item.css);
 @import url(../blocks/cards/__info/cards__info.css);
 @import url(../blocks/cards/__image/cards__image.css);
 @import url(../blocks/cards/__caption/cards__caption.css);
+@import url(../blocks/cards/__delete-btn/cards__delete-btn.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
