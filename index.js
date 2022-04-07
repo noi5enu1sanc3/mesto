@@ -5,16 +5,19 @@ const cardAddButton = profile.querySelector('.profile__add-btn');
 
 const popupProfileEdit = document.querySelector('.popup_role_edit-profile');
 const popupCardAdd = document.querySelector('.popup_role_add-card');
+const popupImageView = document.querySelector('.popup_role_view-image');
+
 const popupProfileEditCloseButton = popupProfileEdit.querySelector('.popup__close-btn');
 const popupCardAddCloseButton = popupCardAdd.querySelector('.popup__close-btn');
+const popupImageViewCloseButton = popupImageView.querySelector('.popup__close-btn');
 
 const username = profile.querySelector('.profile__username');
 const userinfo = profile.querySelector('.profile__userinfo');
 const formUsername = popupProfileEdit.querySelector('.popup__input-form_type_username');
 const formUserinfo = popupProfileEdit.querySelector('.popup__input-form_type_userinfo');
 
-const formElementProfile = popupProfileEdit.querySelector('.popup__container');
-const formElementCard = popupCardAdd.querySelector('.popup__container');
+const formSubmitButtonProfile = popupProfileEdit.querySelector('.popup__container');
+const formSubmitButtonCard = popupCardAdd.querySelector('.popup__container');
 
 const formCardName = popupCardAdd.querySelector('.popup__input-form_type_card-name');
 const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-link');
@@ -68,8 +71,18 @@ function renderCard(element) {
 
   cardLikeButton.addEventListener('click', likeCardHandler);
   cardDeleteButton.addEventListener('click', deleteCardHandler);
+  cardImage.addEventListener('click', imageViewHandler);
 
   return cardElement;
+}
+
+function imageViewHandler(evt) {
+  const imageContainer = popupImageView.querySelector('.popup__image-container');
+  const popupImage = imageContainer.querySelector('.popup__image');
+  const popupImageCaption = imageContainer.querySelector('.popup__caption');
+  popupImageCaption.textContent = evt.target.alt;
+  popupImage.src = evt.target.src;
+  openPopupHandler(popupImageView);
 }
 
 function addNewCardHandler(evt) {
@@ -91,20 +104,20 @@ function openPopupHandler(role) {
   role.classList.add('popup_status_show');
 }
 
-function profileEditHandler() {
+function editProfileHandler() {
   formUsername.value = username.textContent;
   formUserinfo.value = userinfo.textContent;
   openPopupHandler(popupProfileEdit);
 }
 
-function profileSubmitHandler(evt) {
+function submitProfileHandler(evt) {
   evt.preventDefault();
   username.textContent = formUsername.value;
   userinfo.textContent = formUserinfo.value;
   closePopupHandler(popupProfileEdit);
 }
 
-function cardAddHandler() {
+function addCardHandler() {
   formCardName.value = '';
   formCardLink.value = '';
   openPopupHandler(popupCardAdd);
@@ -122,10 +135,15 @@ function closeCardAddPopupHandler() {
   closePopupHandler(popupCardAdd);
 }
 
+function closeImageViewHandler() {
+  closePopupHandler(popupImageView);
+}
+
 window.addEventListener("load", addInitialCards);
-profileEditBtn.addEventListener('click', profileEditHandler);
-cardAddButton.addEventListener('click', cardAddHandler);
-formElementProfile.addEventListener('submit', profileSubmitHandler);
-formElementCard.addEventListener('submit', addNewCardHandler);
+profileEditBtn.addEventListener('click', editProfileHandler);
+cardAddButton.addEventListener('click', addCardHandler);
+formSubmitButtonProfile.addEventListener('submit', submitProfileHandler);
+formSubmitButtonCard.addEventListener('submit', addNewCardHandler);
 popupProfileEditCloseButton.addEventListener('click', closeProfileEditPopupHandler);
 popupCardAddCloseButton.addEventListener('click', closeCardAddPopupHandler);
+popupImageViewCloseButton.addEventListener('click', closeImageViewHandler);
