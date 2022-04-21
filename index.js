@@ -21,6 +21,7 @@ const formUserinfo = popupProfileEdit.querySelector('.popup__input-form_type_use
 
 const formSubmitButtonProfile = popupProfileEdit.querySelector('.popup__container');
 const formSubmitButtonCard = popupCardAdd.querySelector('.popup__container');
+const cardAddInput = formSubmitButtonCard.querySelector('.popup__form');
 
 const formCardName = popupCardAdd.querySelector('.popup__input-form_type_card-name');
 const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-link');
@@ -28,33 +29,34 @@ const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-li
 const cardsTemplate = document.querySelector('#card').content;
 const cardsList = document.querySelector('.cards__items');
 
+const initialCards = [
+  {
+    name: 'Сон о Петербурге',
+    link: 'images/st-pete-dream.jpeg'
+  },
+  {
+    name: 'Сон о Москве',
+    link: 'images/moscow-dream.jpeg'
+  },
+  {
+    name: 'Сон о Тайге',
+    link: 'images/taiga-dream.jpg'
+  },
+  {
+    name: 'Сон о Кавказе',
+    link: 'images/caucasus-dream.jpeg'
+  },
+  {
+    name: 'Сон о Байкале',
+    link: 'images/Baikal-dream.jpeg'
+  },
+  {
+    name: 'Сон о Сочи',
+    link: 'images/Sochi-dream.jpeg'
+  }
+];
+
 function addInitialCards() {
-  const initialCards = [
-    {
-      name: 'Сон о Петербурге',
-      link: 'images/st-pete-dream.jpeg'
-    },
-    {
-      name: 'Сон о Москве',
-      link: 'images/moscow-dream.jpeg'
-    },
-    {
-      name: 'Сон о Тайге',
-      link: 'images/taiga-dream.jpg'
-    },
-    {
-      name: 'Сон о Кавказе',
-      link: 'images/caucasus-dream.jpeg'
-    },
-    {
-      name: 'Сон о Байкале',
-      link: 'images/Baikal-dream.jpeg'
-    },
-    {
-      name: 'Сон о Сочи',
-      link: 'images/Sochi-dream.jpeg'
-    }
-  ];
   initialCards.forEach(function(element) {
     const initialCardElement = renderCard(element);
     cardsList.append(initialCardElement);
@@ -85,11 +87,12 @@ function imageViewHandler(evt) {
   openPopupHandler(popupImageView);
 }
 
-function addNewCardHandler(evt) {
+function submitNewCardHandler(evt) {
   evt.preventDefault();
   const newCardElement = renderCard({name: formCardName.value, link: formCardLink.value});
   cardsList.prepend(newCardElement);
   closePopup(popupCardAdd);
+  cardAddInput.reset();
 }
 
 function likeCardHandler(evt) {
@@ -118,8 +121,6 @@ function submitProfileHandler(evt) {
 }
 
 function addCardHandler() {
-  formCardName.value = '';
-  formCardLink.value = '';
   openPopupHandler(popupCardAdd);
 }
 
@@ -131,11 +132,19 @@ window.addEventListener("load", addInitialCards);
 profileEditBtn.addEventListener('click', editProfileHandler);
 cardAddButton.addEventListener('click', addCardHandler);
 formSubmitButtonProfile.addEventListener('submit', submitProfileHandler);
-formSubmitButtonCard.addEventListener('submit', addNewCardHandler);
+formSubmitButtonCard.addEventListener('submit', submitNewCardHandler);
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-     if (evt.target.classList.contains('popup__close-btn')) {
+     if (evt.target.classList.contains('popup__close-btn') || evt.target.classList.contains('popup')) {
+        closePopup(popup)
+      }
+  })
+});
+
+popups.forEach((popup) => {
+  document.addEventListener('keydown', (evt) => {
+     if (evt.key === 'Escape') {
         closePopup(popup)
       }
   })

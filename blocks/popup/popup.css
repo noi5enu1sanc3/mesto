@@ -11,5 +11,6 @@
   display: flex;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.3s, opacity 0.3s ease-in-out;
+  cursor: pointer;
+  transition: visibility 0.4s, opacity 0.4s ease-in-out;
 }
