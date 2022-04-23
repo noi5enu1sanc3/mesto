@@ -7,6 +7,7 @@
   height: 32px;
   background-color: transparent;
   border: none;
+  outline: none;
   background-image: url(../../../images/popup__close-btn.svg);
   background-repeat: no-repeat;
   background-position-x: center;

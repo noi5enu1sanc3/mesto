@@ -29,6 +29,9 @@ const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-li
 const cardsTemplate = document.querySelector('#card').content;
 const cardsList = document.querySelector('.cards__items');
 
+const errorMessages = document.querySelectorAll('.popup__input-error');
+const inputs = document.querySelectorAll('.popup__input-form');
+
 const initialCards = [
   {
     name: 'Сон о Петербурге',
@@ -92,7 +95,6 @@ function submitNewCardHandler(evt) {
   const newCardElement = renderCard({name: formCardName.value, link: formCardLink.value});
   cardsList.prepend(newCardElement);
   closePopup(popupCardAdd);
-  cardAddInput.reset();
 }
 
 function likeCardHandler(evt) {
@@ -104,6 +106,7 @@ function deleteCardHandler(evt) {
 }
 
 function openPopupHandler(popup) {
+  document.addEventListener('keydown', closePopupOnEsc);
   popup.classList.add('popup_status_show');
 }
 
@@ -121,11 +124,25 @@ function submitProfileHandler(evt) {
 }
 
 function addCardHandler() {
+  cardAddInput.reset();
   openPopupHandler(popupCardAdd);
+}
+
+function resetErrors() {
+  errorMessages.forEach((message) => message.textContent = '');
+  inputs.forEach((input) => input.classList.remove('popup__input-form_type_error'));
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_status_show');
+  resetErrors();
+  document.removeEventListener('keydown', closePopupOnEsc);
+}
+
+function closePopupOnEsc(evt) {
+  if (evt.key === 'Escape') {
+    popups.forEach((popup) => closePopup(popup));
+  }
 }
 
 window.addEventListener("load", addInitialCards);
@@ -137,14 +154,6 @@ formSubmitButtonCard.addEventListener('submit', submitNewCardHandler);
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
      if (evt.target.classList.contains('popup__close-btn') || evt.target.classList.contains('popup')) {
-        closePopup(popup)
-      }
-  })
-});
-
-popups.forEach((popup) => {
-  document.addEventListener('keydown', (evt) => {
-     if (evt.key === 'Escape') {
         closePopup(popup)
       }
   })
