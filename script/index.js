@@ -77,27 +77,27 @@ function renderCard(element) {
   cardImage.src = element.link;
   cardImage.alt = element.name;
 
-  cardLikeButton.addEventListener('click', likeCardHandler);
+  cardLikeButton.addEventListener('click', toggleLikeButton);
   cardDeleteButton.addEventListener('click', deleteCardHandler);
-  cardImage.addEventListener('click', imageViewHandler);
+  cardImage.addEventListener('click', viewImage);
 
   return cardElement;
 }
 
-function imageViewHandler(evt) {
+function viewImage(evt) {
   popupImageCaption.textContent = evt.target.alt;
   popupImage.src = evt.target.src;
-  openPopupHandler(popupImageView);
+  openPopup(popupImageView);
 }
 
-function submitNewCardHandler(evt) {
+function submitNewCard(evt) {
   evt.preventDefault();
   const newCardElement = renderCard({name: formCardName.value, link: formCardLink.value});
   cardsList.prepend(newCardElement);
   closePopup(popupCardAdd);
 }
 
-function likeCardHandler(evt) {
+function toggleLikeButton(evt) {
   evt.target.classList.toggle('cards__like-btn_status_active');
 }
 
@@ -105,18 +105,18 @@ function deleteCardHandler(evt) {
   evt.target.closest('.cards__item').remove();
 }
 
-function openPopupHandler(popup) {
+function openPopup(popup) {
   document.addEventListener('keydown', closePopupOnEsc);
   popup.classList.add('popup_status_show');
 }
 
-function editProfileHandler() {
+function openProfileEdit() {
   formUsername.value = username.textContent;
   formUserinfo.value = userinfo.textContent;
-  openPopupHandler(popupProfileEdit);
+  openPopup(popupProfileEdit);
 }
 
-function submitProfileHandler(evt) {
+function submitProfileEdit(evt) {
   evt.preventDefault();
   username.textContent = formUsername.value;
   userinfo.textContent = formUserinfo.value;
@@ -125,7 +125,7 @@ function submitProfileHandler(evt) {
 
 function addCardHandler() {
   cardAddInput.reset();
-  openPopupHandler(popupCardAdd);
+  openPopup(popupCardAdd);
 }
 
 function resetErrors() {
@@ -146,10 +146,10 @@ function closePopupOnEsc(evt) {
 }
 
 window.addEventListener("load", addInitialCards);
-profileEditBtn.addEventListener('click', editProfileHandler);
+profileEditBtn.addEventListener('click', openProfileEdit);
 cardAddButton.addEventListener('click', addCardHandler);
-formSubmitButtonProfile.addEventListener('submit', submitProfileHandler);
-formSubmitButtonCard.addEventListener('submit', submitNewCardHandler);
+formSubmitButtonProfile.addEventListener('submit', submitProfileEdit);
+formSubmitButtonCard.addEventListener('submit', submitNewCard);
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
