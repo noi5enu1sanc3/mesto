@@ -19,9 +19,12 @@ const userinfo = profile.querySelector('.profile__userinfo');
 const formUsername = popupProfileEdit.querySelector('.popup__input-form_type_username');
 const formUserinfo = popupProfileEdit.querySelector('.popup__input-form_type_userinfo');
 
-const formSubmitButtonProfile = popupProfileEdit.querySelector('.popup__container');
-const formSubmitButtonCard = popupCardAdd.querySelector('.popup__container');
-const cardAddInput = formSubmitButtonCard.querySelector('.popup__form');
+const formSubmitProfileContainer = popupProfileEdit.querySelector('.popup__container');
+const formSubmitCardContainer = popupCardAdd.querySelector('.popup__container');
+const cardAddForm = formSubmitCardContainer.querySelector('.popup__form');
+
+const cardSubmitButton = cardAddForm.querySelector('.popup__save-btn');
+const cardSubmitInputsList = Array.from(cardAddForm.querySelectorAll('.popup__input-form'));
 
 const formCardName = popupCardAdd.querySelector('.popup__input-form_type_card-name');
 const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-link');
@@ -124,8 +127,18 @@ function submitProfileEdit(evt) {
   closePopup(popupProfileEdit);
 }
 
+function isInputEmpty() {
+  return cardSubmitInputsList.some((input) => !input.value);
+}
+
+function disableSubmitCardButton() {
+  cardSubmitButton.disabled = isInputEmpty();
+  cardSubmitButton.classList.add('popup__save-btn_disabled');
+}
+
 function addCardHandler() {
-  cardAddInput.reset();
+  cardAddForm.reset();
+  disableSubmitCardButton();
   openPopup(popupCardAdd);
 }
 
@@ -149,8 +162,8 @@ function closePopupOnEsc(evt) {
 window.addEventListener("load", addInitialCards);
 profileEditBtn.addEventListener('click', openProfileEdit);
 cardAddButton.addEventListener('click', addCardHandler);
-formSubmitButtonProfile.addEventListener('submit', submitProfileEdit);
-formSubmitButtonCard.addEventListener('submit', submitNewCard);
+formSubmitProfileContainer.addEventListener('submit', submitProfileEdit);
+formSubmitCardContainer.addEventListener('submit', submitNewCard);
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
