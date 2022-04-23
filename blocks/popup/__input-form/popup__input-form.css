@@ -2,7 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   padding-bottom: 13px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-size: 14px;
@@ -14,12 +14,8 @@
   outline: none;
 }
 
-.popup__input-form:last-of-type {
-  margin-bottom: 48px;
-}
-
 @media screen and (max-width: 700px) {
   .popup__input-form:last-of-type {
-    margin-bottom: 45px;
+    margin-bottom: 5px;
   }
 }

@@ -51,9 +51,10 @@
     <section class="popup popup_role_edit-profile">
       <div class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <form name="userProfileInfo" class="popup__form">
+        <form name="userProfileInfo" class="popup__form" novalidate>
           <input
             name="username"
+            id="username-input"
             type="text"
             class="popup__input-form popup__input-form_type_username"
             placeholder="Как вас зовут?"
@@ -61,8 +62,13 @@
             maxlength="40"
             required
           />
+          <div class="popup__input-error-container">
+
+            <span class="popup__input-error" id="username-input-error" ></span>
+          </div>
           <input
             name="userinfo"
+            id="userinfo-input"
             type="text"
             class="popup__input-form popup__input-form_type_userinfo"
             placeholder="Кто вы?"
@@ -70,6 +76,10 @@
             maxlength="200"
             required
           />
+          <div class="popup__input-error-container">
+
+            <span class="popup__input-error" id="userinfo-input-error" ></span>
+          </div>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close-btn"></button>
@@ -78,21 +88,33 @@
     <section class="popup popup_role_add-card">
       <div class="popup__container">
         <h2 class="popup__heading">Новое место</h2>
-        <form name="newCardUpload" class="popup__form">
+        <form name="newCardUpload" class="popup__form" novalidate>
           <input
             name="cardName"
+            id="cardName-input"
             type="text"
             class="popup__input-form popup__input-form_type_card-name"
             placeholder="Название"
+            minlength="2"
+            maxlength="30"
             required
           />
+          <div class="popup__input-error-container">
+
+            <span class="popup__input-error" id="cardName-input-error"></span>
+          </div>
           <input
             name="cardLink"
+            id="cardLink-input"
             type="url"
             class="popup__input-form popup__input-form_type_card-link"
             placeholder="Ссылка на картинку"
             required
           />
+          <div class="popup__input-error-container">
+
+            <span class="popup__input-error" id="cardLink-input-error"></span>
+          </div>
           <button type="submit" class="popup__save-btn">Создать</button>
         </form>
         <button type="button" class="popup__close-btn"></button>
@@ -111,7 +133,8 @@
         </div>
       </li>
     </template>
-    <script src="./index.js"></script>
+    <script src="./script/validate.js"></script>
+    <script src="./script/index.js"></script>
   </body>
 </html>
            
