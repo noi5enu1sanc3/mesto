@@ -87,6 +87,7 @@ function renderCard(element) {
 function viewImage(evt) {
   popupImageCaption.textContent = evt.target.alt;
   popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.alt;
   openPopup(popupImageView);
 }
 
