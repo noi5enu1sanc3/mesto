@@ -9,7 +9,6 @@ function enableValidation(config) {
 function handleFormInput(evt, form, config)  {
   const input = evt.target;
   const errorNode = document.querySelector(`#${input.id}-error`);
-  toggleButton(form, config);
   if (input.validity.valid) {
     errorNode.textContent = '';
     input.classList.remove(config.inputErrorClass);
