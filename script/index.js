@@ -10,6 +10,8 @@ const popupImageView = document.querySelector('.popup_role_view-image');
 const popup = document.querySelector('.popup');
 const popups = document.querySelectorAll('.popup');
 
+const formElement = document.querySelector('.popup__form');
+
 const imageContainer = popupImageView.querySelector('.popup__image-container');
 const popupImage = imageContainer.querySelector('.popup__image');
 const popupImageCaption = imageContainer.querySelector('.popup__caption');
@@ -114,9 +116,10 @@ function openPopup(popup) {
   popup.classList.add('popup_status_show');
 }
 
-function openProfileEdit() {
+function openProfileEditHandler() {
   formUsername.value = username.textContent;
   formUserinfo.value = userinfo.textContent;
+  resetErrors(errorMessages, inputs);
   openPopup(popupProfileEdit);
 }
 
@@ -127,29 +130,29 @@ function submitProfileEdit(evt) {
   closePopup(popupProfileEdit);
 }
 
-function isInputEmpty() {
-  return cardSubmitInputsList.some((input) => !input.value);
+function isInputEmpty(inputList) {
+  return inputList.some((input) => !input.value);
 }
 
-function disableSubmitCardButton() {
-  cardSubmitButton.disabled = isInputEmpty();
-  cardSubmitButton.classList.add('popup__save-btn_disabled');
+function disableSubmitButton(button, form) {
+  button.disabled = isInputEmpty(form);
+  button.classList.add('popup__save-btn_disabled');
 }
 
 function addCardHandler() {
   cardAddForm.reset();
-  disableSubmitCardButton();
+  disableSubmitButton(cardSubmitButton, cardSubmitInputsList);
+  resetErrors(errorMessages, inputs);
   openPopup(popupCardAdd);
 }
 
-function resetErrors() {
-  errorMessages.forEach((message) => message.textContent = '');
-  inputs.forEach((input) => input.classList.remove('popup__input-form_type_error'));
+function resetErrors(errorElements, inputElements) {
+  errorElements.forEach((message) => message.textContent = '');
+  inputElements.forEach((input) => input.classList.remove('popup__input-form_type_error'));
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_status_show');
-  resetErrors();
   document.removeEventListener('keydown', closePopupOnEsc);
 }
 
@@ -160,7 +163,7 @@ function closePopupOnEsc(evt) {
 }
 
 window.addEventListener("load", addInitialCards);
-profileEditBtn.addEventListener('click', openProfileEdit);
+profileEditBtn.addEventListener('click', openProfileEditHandler);
 cardAddButton.addEventListener('click', addCardHandler);
 formSubmitProfileContainer.addEventListener('submit', submitProfileEdit);
 formSubmitCardContainer.addEventListener('submit', submitNewCard);
