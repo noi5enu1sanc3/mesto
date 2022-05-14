@@ -43,7 +43,7 @@ export class Card {
     popupImage.src = this._link;
     popupImage.alt = this._name;
     
-    openPopup(popupImageView)();
+    openPopup(popupImageView);
   }
 
   _handleLike() {

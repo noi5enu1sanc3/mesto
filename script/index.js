@@ -1,22 +1,15 @@
 import { Card } from "./card.js";
+import { FormValidator } from "./formValidator.js";
 
 const profile = document.querySelector('.profile');
-const profileEditBtn = profile.querySelector('.profile__edit-btn');
 
+const profileEditBtn = profile.querySelector('.profile__edit-btn');
 const cardAddButton = profile.querySelector('.profile__add-btn');
+
+const popups = document.querySelectorAll('.popup');
 
 const popupProfileEdit = document.querySelector('.popup_role_edit-profile');
 const popupCardAdd = document.querySelector('.popup_role_add-card');
-//const popupImageView = document.querySelector('.popup_role_view-image');
-
-const popup = document.querySelector('.popup');
-const popups = document.querySelectorAll('.popup');
-
-const formElement = document.querySelector('.popup__form');
-
-//const imageContainer = popupImageView.querySelector('.popup__image-container');
-//const popupImage = imageContainer.querySelector('.popup__image');
-//const popupImageCaption = imageContainer.querySelector('.popup__caption');
 
 const username = profile.querySelector('.profile__username');
 const userinfo = profile.querySelector('.profile__userinfo');
@@ -25,19 +18,23 @@ const formUserinfo = popupProfileEdit.querySelector('.popup__input-form_type_use
 
 const formSubmitProfileContainer = popupProfileEdit.querySelector('.popup__container');
 const formSubmitCardContainer = popupCardAdd.querySelector('.popup__container');
-const cardAddForm = formSubmitCardContainer.querySelector('.popup__form');
 
-const cardSubmitButton = cardAddForm.querySelector('.popup__save-btn');
-const cardSubmitInputsList = Array.from(cardAddForm.querySelectorAll('.popup__input-form'));
+const profileForm = formSubmitProfileContainer.querySelector('.popup__form');
+const cardAddForm = formSubmitCardContainer.querySelector('.popup__form');
 
 const formCardName = popupCardAdd.querySelector('.popup__input-form_type_card-name');
 const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-link');
 
-//const cardsTemplate = document.querySelector('#card').content;
 const cardsList = document.querySelector('.cards__items');
 
-const errorMessages = document.querySelectorAll('.popup__input-error');
-const inputs = document.querySelectorAll('.popup__input-form');
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-btn',
+  closeButtonSelector: '.popup__close-btn',
+  inactiveButtonClass: 'popup__save-btn_disabled',
+  inputErrorClass: 'popup__input-form_type_error',
+};
 
 const initialCards = [
   {
@@ -66,12 +63,18 @@ const initialCards = [
   }
 ];
 
+const profileFormValidator = new FormValidator(config, profileForm);
+const cardFormValidator = new FormValidator(config, cardAddForm);
+
 initialCards.forEach((item) => {
   const card = new Card(item, '.cards__item');
   const cardElement = card.renderCard();
 
   cardsList.append(cardElement);
 });
+
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 function submitNewCard(evt) {
   evt.preventDefault();
@@ -90,7 +93,7 @@ export function openPopup(popup) {
 function openProfileEditHandler() {
   formUsername.value = username.textContent;
   formUserinfo.value = userinfo.textContent;
-  resetErrors(errorMessages, inputs);
+  profileFormValidator.resetErrors();
   openPopup(popupProfileEdit);
 }
 
@@ -101,25 +104,10 @@ function submitProfileEdit(evt) {
   closePopup(popupProfileEdit);
 }
 
-function isInputEmpty(inputList) {
-  return inputList.some((input) => !input.value);
-}
-
-function disableSubmitButton(button, form) {
-  button.disabled = isInputEmpty(form);
-  button.classList.add('popup__save-btn_disabled');
-}
-
 function addCardHandler() {
   cardAddForm.reset();
-  disableSubmitButton(cardSubmitButton, cardSubmitInputsList);
-  resetErrors(errorMessages, inputs);
+  cardFormValidator.resetErrors();
   openPopup(popupCardAdd);
-}
-
-function resetErrors(errorElements, inputElements) {
-  errorElements.forEach((message) => message.textContent = '');
-  inputElements.forEach((input) => input.classList.remove('popup__input-form_type_error'));
 }
 
 function closePopup(popup) {
