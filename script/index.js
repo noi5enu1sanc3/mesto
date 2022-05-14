@@ -29,7 +29,7 @@ const cardsList = document.querySelector('.cards__items');
 
 const config = {
   formSelector: '.popup__form',
-  inputSelector: '.popup__input',
+  inputSelector: '.popup__input-form',
   submitButtonSelector: '.popup__save-btn',
   closeButtonSelector: '.popup__close-btn',
   inactiveButtonClass: 'popup__save-btn_disabled',
