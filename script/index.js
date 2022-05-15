@@ -27,6 +27,8 @@ const formCardLink = popupCardAdd.querySelector('.popup__input-form_type_card-li
 
 const cardsList = document.querySelector('.cards__items');
 
+const cardTemplate = '#card';
+
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input-form',
@@ -66,11 +68,12 @@ const initialCards = [
 const profileFormValidator = new FormValidator(config, profileForm);
 const cardFormValidator = new FormValidator(config, cardAddForm);
 
-initialCards.forEach((item) => {
-  const card = new Card(item, '.cards__item');
-  const cardElement = card.renderCard();
+function getCard(data, templateSelector) {
+  return new Card(data, templateSelector).renderCard();
+}
 
-  cardsList.append(cardElement);
+initialCards.forEach((item) => {
+  cardsList.append(getCard(item, cardTemplate));
 });
 
 profileFormValidator.enableValidation();
@@ -78,10 +81,8 @@ cardFormValidator.enableValidation();
 
 function submitNewCard(evt) {
   evt.preventDefault();
-  const card = new Card({name: formCardName.value, link: formCardLink.value}, '.cards__item');
-  const newCardElement = card.renderCard();
   
-  cardsList.prepend(newCardElement);
+  cardsList.prepend(getCard({name: formCardName.value, link: formCardLink.value}, cardTemplate));
   closePopup(popupCardAdd);
 }
 
@@ -117,7 +118,8 @@ function closePopup(popup) {
 
 function closePopupOnEsc(evt) {
   if (evt.key === 'Escape') {
-    popups.forEach((popup) => closePopup(popup));
+    const openedPopup = document.querySelector('.popup_status_show');
+    closePopup(openedPopup);
   }
 }
 

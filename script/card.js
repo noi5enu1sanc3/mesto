@@ -14,9 +14,9 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector('#card')
-      .content
       .querySelector(this._templateSelector)
+      .content
+      .querySelector('.cards__item')
       .cloneNode(true);
 
     return cardElement;
@@ -52,6 +52,7 @@ export class Card {
 
   _handleDeleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
