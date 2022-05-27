@@ -1,18 +1,18 @@
-import {
-  cardElementSelector,
-  cardImageSelector,
-  cardCaptionSelector,
-  cardLikeButtonSelector,
-  cardDeleteButtonSelector,
-  cardLikeButtonActiveClass
-} from '../utils/constants.js';
-
 export default class Card {
-  constructor({data, handleCardClick}, templateSelector) {
+  constructor({data, handleCardClick}, templateSelector, elementsConfig) {
     this._link = data.link;
     this._name = data.name;
+
     this._handleCardClick = handleCardClick;
+
     this._templateSelector = templateSelector;
+
+    this._cardElementSelector = elementsConfig.cardElementSelector;
+    this._cardImageSelector = elementsConfig.cardImageSelector;
+    this._cardCaptionSelector = elementsConfig.cardCaptionSelector;
+    this._cardLikeButtonSelector = elementsConfig.cardLikeButtonSelector;
+    this._cardDeleteButtonSelector = elementsConfig.cardDeleteButtonSelector;
+    this._cardLikeButtonActiveClass = elementsConfig.cardLikeButtonActiveClass;
 
     this._handleLike = this._handleLike.bind(this);
     this._handleDeleteCard = this._handleDeleteCard.bind(this);
@@ -23,7 +23,7 @@ export default class Card {
     const cardElement = document
       .querySelector(this._templateSelector)
       .content
-      .querySelector(cardElementSelector)
+      .querySelector(this._cardElementSelector)
       .cloneNode(true);
 
     return cardElement;
@@ -31,10 +31,10 @@ export default class Card {
 
   renderCard() {
     this._element = this._getTemplate();
-    this._cardImage = this._element.querySelector(cardImageSelector);
-    this._cardName = this._element.querySelector(cardCaptionSelector);
-    this._cardLikeButton = this._element.querySelector(cardLikeButtonSelector);
-    this._cardDeleteButton = this._element.querySelector(cardDeleteButtonSelector);
+    this._cardImage = this._element.querySelector(this._cardImageSelector);
+    this._cardName = this._element.querySelector(this._cardCaptionSelector);
+    this._cardLikeButton = this._element.querySelector(this._cardLikeButtonSelector);
+    this._cardDeleteButton = this._element.querySelector(this._cardDeleteButtonSelector);
 
     this._cardName.textContent = this._name;
     this._cardImage.src = this._link;
@@ -46,7 +46,7 @@ export default class Card {
   }
 
   _handleLike() {
-    this._cardLikeButton.classList.toggle(cardLikeButtonActiveClass);
+    this._cardLikeButton.classList.toggle(this._cardLikeButtonActiveClass);
   }
 
   _handleDeleteCard() {

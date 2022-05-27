@@ -1,35 +1,17 @@
 export const cardsListContainerSelector = '.cards__items';
 
-export const cardElementSelector = '.cards__item';
-
-export const cardImageSelector = '.cards__image';
-export const cardCaptionSelector = '.cards__caption';
-export const cardLikeButtonSelector = '.cards__like-btn';
-export const cardDeleteButtonSelector = '.cards__delete-btn';
-
-export const cardLikeButtonActiveClass = 'cards__like-btn_status_active';
-
 export const cardTemplateId = '#card';
 
 export const popupWithImageSelector = '.popup_role_view-image';
 export const popupCardSubmitSelector = '.popup_role_add-card';
 export const popupProfileEditSelector = '.popup_role_edit-profile';
 
-export const popupCloseButtonSelector = '.popup__close-btn';
-
-export const popupVisibleClass = 'popup_status_show';
-
-export const formSelector = '.popup__form';
-export const inputSelector = '.popup__input-form';
+const formSelector = '.popup__form';
 
 export const usernameTextSelector = '.profile__username';
 export const userinfoTextSelector = '.profile__userinfo';
 
 const popupImageView = document.querySelector(popupWithImageSelector);
-const imageContainer = popupImageView.querySelector('.popup__image-container');
-
-export const popupImageCaption = imageContainer.querySelector('.popup__caption');
-export const popupImage = imageContainer.querySelector('.popup__image');
 
 const profile = document.querySelector('.profile');
 
@@ -56,6 +38,24 @@ export const config = {
   inactiveButtonClass: 'popup__save-btn_disabled',
   inputErrorClass: 'popup__input-form_type_error',
 };
+
+export const elementsConfigCard = {
+  cardElementSelector: '.cards__item',
+  cardImageSelector: '.cards__image',
+  cardCaptionSelector: '.cards__caption',
+  cardLikeButtonSelector: '.cards__like-btn',
+  cardDeleteButtonSelector: '.cards__delete-btn',
+  cardLikeButtonActiveClass: 'cards__like-btn_status_active',
+}
+
+export const elementsConfigPopup = {
+  popupVisibleClass: 'popup_status_show', 
+  popupCloseButtonSelector: '.popup__close-btn',
+  popupImageCaptionSelector: '.popup__caption', 
+  popupImageSelector: '.popup__image',
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-form',
+}
 
 const pete = new URL('../../images/st-pete-dream.jpeg', import.meta.url);
 const moscow = new URL('../../images/moscow-dream.jpeg', import.meta.url);

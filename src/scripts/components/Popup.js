@@ -1,9 +1,12 @@
-import { popupVisibleClass, popupCloseButtonSelector } from "../utils/constants.js"
-
 export default class Popup {
-  constructor(popupSelector) {
-    this._popup = document.querySelector(popupSelector);
-    this._closeButton = this._popup.querySelector(popupCloseButtonSelector);
+  constructor(popupSelector, elementsConfig) {
+    this._popupSelector = popupSelector;
+
+    this._popupCloseButtonSelector = elementsConfig.popupCloseButtonSelector;
+    this._popupVisibleClass = elementsConfig.popupVisibleClass;
+
+    this._popup = document.querySelector(this._popupSelector);
+    this._closeButton = this._popup.querySelector(this._popupCloseButtonSelector);
 
     this._handleEscClose = this._handleEscClose.bind(this);
     this.close = this.close.bind(this);
@@ -12,11 +15,11 @@ export default class Popup {
 
   open() {
     document.addEventListener('keydown', this._handleEscClose);
-    this._popup.classList.add(popupVisibleClass);
+    this._popup.classList.add(this._popupVisibleClass);
   }
 
   close() {
-    this._popup.classList.remove(popupVisibleClass);
+    this._popup.classList.remove(this._popupVisibleClass);
     document.removeEventListener('keydown', this._handleEscClose);
   }
 

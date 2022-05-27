@@ -18,6 +18,8 @@ import {
   userinfoTextSelector,
   cardTemplateId,
   config,
+  elementsConfigCard,
+  elementsConfigPopup,
   initialCards,
   popupWithImageSelector,
   popupCardSubmitSelector,
@@ -33,11 +35,11 @@ const cardFormValidator = new FormValidator(config, cardAddForm);
 cardFormValidator.enableValidation();
 
 function getCard(item) {
-    const card = new Card({data: item, handleCardClick: () => cardClickHandler(item)}, cardTemplateId);
+    const card = new Card({data: item, handleCardClick: () => cardClickHandler(item)}, cardTemplateId, elementsConfigCard);
     return card.renderCard();
 }
 
-const popupImageView = new PopupWithImage(popupWithImageSelector);
+const popupImageView = new PopupWithImage(popupWithImageSelector, elementsConfigPopup);
 const cardClickHandler = (item) => {popupImageView.open(item)};
 
 popupImageView.setEventListeners();
@@ -54,7 +56,8 @@ cardsListContainerSelector);
 initiallyRenderedCards.renderItems();
 
 const popupCardSubmit = new PopupWithForm({
-  popupSelector: popupCardSubmitSelector, 
+  popupSelector: popupCardSubmitSelector,
+  elementsConfig: elementsConfigPopup,
   handleFormSubmit: (inputsData) => {
     const card = getCard(inputsData);
     initiallyRenderedCards.addItem(card, true);
@@ -67,6 +70,7 @@ const userInfo = new UserInfo ({nameSelector: usernameTextSelector, jobSelector:
 
 const popupUserInfoSubmit = new PopupWithForm({
   popupSelector: popupProfileEditSelector,
+  elementsConfig: elementsConfigPopup,
   handleFormSubmit: (inputsData) => {
     
   userInfo.setUserInfo(inputsData);
