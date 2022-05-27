@@ -57,29 +57,43 @@ export const config = {
   inputErrorClass: 'popup__input-form_type_error',
 };
 
+// import pete from '../../images/st-pete-dream.jpeg';
+// import moscow from "../../images/moscow-dream.jpeg";
+// import taiga from "../../images/taiga-dream.jpg";
+// import caucasus from "../../images/caucasus-dream.jpeg";
+// import baikal from "../../images/Baikal-dream.jpeg";
+// import sochi from "../../images/Sochi-dream.jpeg";
+
+const pete = new URL('../../images/st-pete-dream.jpeg', import.meta.url);
+const moscow = new URL('../../images/moscow-dream.jpeg', import.meta.url);
+const taiga = new URL('../../images/taiga-dream.jpg', import.meta.url);
+const caucasus = new URL('../../images/caucasus-dream.jpeg', import.meta.url);
+const baikal = new URL('../../images/Baikal-dream.jpeg', import.meta.url);
+const sochi = new URL('../../images/Sochi-dream.jpeg', import.meta.url);
+
 export const initialCards = [
   {
     name: 'Сон о Петербурге',
-    link: 'images/st-pete-dream.jpeg'
+    link: pete
   },
   {
     name: 'Сон о Москве',
-    link: 'images/moscow-dream.jpeg'
+    link: moscow
   },
   {
     name: 'Сон о Тайге',
-    link: 'images/taiga-dream.jpg'
+    link: taiga
   },
   {
     name: 'Сон о Кавказе',
-    link: 'images/caucasus-dream.jpeg'
+    link: caucasus
   },
   {
     name: 'Сон о Байкале',
-    link: 'images/Baikal-dream.jpeg'
+    link: baikal
   },
   {
     name: 'Сон о Сочи',
-    link: 'images/Sochi-dream.jpeg'
+    link: sochi
   }
 ];
