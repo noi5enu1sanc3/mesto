@@ -13,6 +13,10 @@ export default class Card {
     this._name = data.name;
     this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
+
+    this._handleLike = this._handleLike.bind(this);
+    this._handleDeleteCard = this._handleDeleteCard.bind(this);
+    this._handleCardClick = this._handleCardClick.bind(this._element);
   }
 
   _getTemplate() {
@@ -51,8 +55,8 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._cardLikeButton.addEventListener('click', () => {this._handleLike()});
-    this._cardDeleteButton.addEventListener('click', () => {this._handleDeleteCard()});
-    this._cardImage.addEventListener('click', () => {this._handleCardClick(this._element)});
+    this._cardLikeButton.addEventListener('click', this._handleLike);
+    this._cardDeleteButton.addEventListener('click', this._handleDeleteCard);
+    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 }
