@@ -2,6 +2,7 @@ export default class Card {
   constructor({data, handleCardClick}, templateSelector, elementsConfig) {
     this._link = data.link;
     this._name = data.name;
+    this._likes = data.likes.length;
 
     this._handleCardClick = handleCardClick;
 
@@ -11,6 +12,7 @@ export default class Card {
     this._cardImageSelector = elementsConfig.cardImageSelector;
     this._cardCaptionSelector = elementsConfig.cardCaptionSelector;
     this._cardLikeButtonSelector = elementsConfig.cardLikeButtonSelector;
+    this._cardLikesCountSelector = elementsConfig.cardLikesCountSelector;
     this._cardDeleteButtonSelector = elementsConfig.cardDeleteButtonSelector;
     this._cardLikeButtonActiveClass = elementsConfig.cardLikeButtonActiveClass;
 
@@ -35,10 +37,12 @@ export default class Card {
     this._cardName = this._element.querySelector(this._cardCaptionSelector);
     this._cardLikeButton = this._element.querySelector(this._cardLikeButtonSelector);
     this._cardDeleteButton = this._element.querySelector(this._cardDeleteButtonSelector);
+    this._cardLikeCount = this._element.querySelector(this._cardLikesCountSelector);
 
     this._cardName.textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
+    this._cardLikeCount.textContent = this._likes;
 
     this._setEventListeners();
 

@@ -5,13 +5,15 @@ export const cardTemplateId = '#card';
 export const popupWithImageSelector = '.popup_role_view-image';
 export const popupCardSubmitSelector = '.popup_role_add-card';
 export const popupProfileEditSelector = '.popup_role_edit-profile';
+export const popupConfirmSelector = '.popup_role_confirm';
 
 const formSelector = '.popup__form';
 
 export const usernameTextSelector = '.profile__username';
 export const userinfoTextSelector = '.profile__userinfo';
+export const avatarSelector = '.profile__avatar';
 
-const popupImageView = document.querySelector(popupWithImageSelector);
+//const popupImageView = document.querySelector(popupWithImageSelector);
 
 const profile = document.querySelector('.profile');
 
@@ -44,6 +46,7 @@ export const elementsConfigCard = {
   cardImageSelector: '.cards__image',
   cardCaptionSelector: '.cards__caption',
   cardLikeButtonSelector: '.cards__like-btn',
+  cardLikesCountSelector: '.cards__like-count',
   cardDeleteButtonSelector: '.cards__delete-btn',
   cardLikeButtonActiveClass: 'cards__like-btn_status_active',
 }
