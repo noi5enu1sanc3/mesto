@@ -18,16 +18,16 @@
       <main class="content">
         <section class="profile">
           <img
-            src="<%=require('./images/profile__avatar.jpg')%>"
+            src=""
             alt="аватар пользователя"
             class="profile__avatar"
           />
           <div class="profile__about">
             <div class="profile__name-edit-wrapper">
-              <h1 class="profile__username">Онейрос</h1>
+              <h1 class="profile__username"></h1>
               <button type="button" aria-label="Редактировать профиль" class="profile__edit-btn"></button>
             </div>
-            <p class="profile__userinfo">Исследователь снов</p>
+            <p class="profile__userinfo"></p>
           </div>
           <button type="button" aria-label="Загрузить фото" class="profile__add-btn"></button>
         </section>
@@ -52,7 +52,7 @@
         <h2 class="popup__heading">Редактировать профиль</h2>
         <form name="userProfileInfo" class="popup__form" novalidate>
           <input
-            name="username"
+            name="name"
             id="username-input"
             type="text"
             class="popup__input-form popup__input-form_type_username"
@@ -62,11 +62,10 @@
             required
           />
           <div class="popup__input-error-container">
-
             <span class="popup__input-error" id="username-input-error" ></span>
           </div>
           <input
-            name="userinfo"
+            name="about"
             id="userinfo-input"
             type="text"
             class="popup__input-form popup__input-form_type_userinfo"
@@ -76,7 +75,6 @@
             required
           />
           <div class="popup__input-error-container">
-
             <span class="popup__input-error" id="userinfo-input-error" ></span>
           </div>
           <button type="submit" class="popup__save-btn">Сохранить</button>
@@ -99,7 +97,6 @@
             required
           />
           <div class="popup__input-error-container">
-
             <span class="popup__input-error" id="cardName-input-error"></span>
           </div>
           <input
@@ -111,12 +108,17 @@
             required
           />
           <div class="popup__input-error-container">
-
             <span class="popup__input-error" id="cardLink-input-error"></span>
           </div>
           <button type="submit" class="popup__save-btn">Создать</button>
         </form>
         <button type="button" class="popup__close-btn"></button>
+      </div>
+    </section>
+    <section class="popup popup_role_confirm">
+      <div class="popup__container">
+        <h2 class="popup__heading">Вы уверены?</h2>
+        <button class="popup__confirm-btn" type="button">Да</button>
       </div>
     </section>
     <template id="card">
@@ -128,7 +130,10 @@
         />
         <div class="cards__info">
           <h2 class="cards__caption"></h2>
-          <button type="button" class="cards__like-btn" aria-label="Нравится"></button>
+          <div class="cards__like-element">
+            <button type="button" class="cards__like-btn" aria-label="Нравится"></button>
+            <p class="cards__like-count">0</p>
+          </div>
         </div>
       </li>
     </template>
