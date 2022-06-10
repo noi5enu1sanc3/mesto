@@ -49,11 +49,13 @@ export const elementsConfigCard = {
   cardLikesCountSelector: '.cards__like-count',
   cardDeleteButtonSelector: '.cards__delete-btn',
   cardLikeButtonActiveClass: 'cards__like-btn_status_active',
+  hiddenDeleteButtonClass: 'cards__delete-btn_visibility_hidden'
 }
 
 export const elementsConfigPopup = {
   popupVisibleClass: 'popup_status_show', 
   popupCloseButtonSelector: '.popup__close-btn',
+  submitButtonSelector: '.popup__save-btn',
   popupImageCaptionSelector: '.popup__caption', 
   popupImageSelector: '.popup__image',
   formSelector: '.popup__form',

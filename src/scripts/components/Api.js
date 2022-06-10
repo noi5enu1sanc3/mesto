@@ -55,4 +55,34 @@ export default class Api {
     })
     .then(res => this._getResponse(res));
   }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}${this._id}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token
+      }
+    })
+    .then(res => this._getResponse(res));
+  }
+
+  addLike(cardId) {
+    return fetch(`${this._baseUrl}${this._id}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: {
+        authorization: this._token
+      }
+    })
+    .then(res => this._getResponse(res));
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this._baseUrl}${this._id}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token
+      }
+    })
+    .then(res => this._getResponse(res));
+  }
 }

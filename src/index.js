@@ -5,6 +5,7 @@ import FormValidator from "./scripts/components/FormValidator.js";
 import Section from "./scripts/components/Section.js";
 import PopupWithImage from "./scripts/components/PopupWithImage.js";
 import PopupWithForm from "./scripts/components/PopupWithForm.js";
+import PopupWithConfirmation from "./scripts/components/PopupWithConfirmation.js";
 import UserInfo from "./scripts/components/UserInfo.js";
 import Api from "./scripts/components/Api.js";
 
@@ -55,19 +56,58 @@ const userInfo = new UserInfo({
   avatarSelector: avatarSelector,
 });
 
+// function handleDelete(card) {
+//   api
+//     .deleteCard(card._id)
+    
+// }
+
+const popupConfirmDelete = new PopupWithConfirmation(popupConfirmSelector, elementsConfigPopup, (card) => {
+  api
+    .deleteCard(card.getCardId())
+    .then(() => console.log(card))
+    .then(() => card.deleteCard())
+    .catch((err) => console.log("Такая ошибка:", err))
+});
+popupConfirmDelete.setEventListeners();
+
 api
   .getUserInfo()
   .then((data) => userInfo.setUserInfo(data))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err))
+
+// function likeCard(card) {
+//   api
+//     .addLike(card.getCardId())
+//     .then(res => card.renderLike(res))
+//     .catch(err => console.log(err))
+// }
+
+function handleLike(card) {
+  if (card.isLiked()) {
+    api
+      .removeLike(card.getCardId())
+      .then(res => card.updateLikes(res))
+      .catch(err => console.log(err))
+  } else {
+    api
+      .addLike(card.getCardId())
+      .then(res => card.updateLikes(res))
+      .catch(err => console.log(err))
+  }
+}
 
 function getCard(item) {
   const card = new Card(
     { 
       data: item, 
-      handleCardClick: () => cardClickHandler(item) 
+      handleCardClick: () => cardClickHandler(item),
+      handleDelete: () => popupConfirmDelete.open(card),
+      handleLike: () => handleLike(card)
     },
     cardTemplateId,
-    elementsConfigCard
+    elementsConfigCard,
+    userInfo
   );
   return card.renderCard();
 }
@@ -91,6 +131,8 @@ api
   .catch((err) => console.log(err)
   );
 
+
+
 const popupImageView = new PopupWithImage(
   popupWithImageSelector,
   elementsConfigPopup
@@ -108,9 +150,9 @@ const popupCardSubmit = new PopupWithForm({
     api
       .uploadNewCard(inputsData)
       .then(data => {
-        const card = getCard(data);
-        initiallyRenderedCards.addItem(card, true);
-      })
+        return getCard(data)})
+      .then((card) => initiallyRenderedCards.addItem(card, true))
+      .catch((err) => console.log(err));
     
   },
   shouldReset: true,
