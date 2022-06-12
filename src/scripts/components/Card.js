@@ -1,12 +1,9 @@
-import { elementsConfigCard } from "../utils/constants";
-
 export default class Card {
   constructor({data, handleCardClick, handleLike, handleDelete}, templateSelector, elementsConfig, user) {
+    this._data = data;
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
-
-    this._data = data;
 
     this._handleCardClick = handleCardClick;
     this._handleLike = handleLike;
@@ -19,8 +16,6 @@ export default class Card {
     this._user = user._id;
     this._owner = data.owner._id;
 
-    //this._handleLike = this._handleLike.bind(this);
-    //this._handleDelete = this._handleDelete.bind(this);
     this._handleCardClick = this._handleCardClick.bind(this._element);
   }
 
@@ -70,10 +65,6 @@ export default class Card {
     return this._element;
   }
 
-  // _getLikesCount() {
-  //   this._cardLikeCount.textContent = this._likes.length
-  // }
-
   _renderLikes() {
     this._cardLikeCount.textContent = this._likes.length;
     if (this.isLiked()) {
@@ -95,7 +86,6 @@ export default class Card {
 
   _setEventListeners() {
     this._cardLikeButton.addEventListener('click', this._handleLike);
-   // this._cardDeleteButton.addEventListener('click', this._handleDelete(this));
     this._cardImage.addEventListener('click', this._handleCardClick);
     if (this._isFromMe()) {
       this._cardDeleteButton.addEventListener('click', this._handleDelete)

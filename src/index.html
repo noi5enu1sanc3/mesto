@@ -17,11 +17,14 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src=""
-            alt="аватар пользователя"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-wrapper">
+            <div class="profile__avatar-overlay"></div>
+            <img
+              src=""
+              alt="аватар пользователя"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__about">
             <div class="profile__name-edit-wrapper">
               <h1 class="profile__username"></h1>
@@ -40,6 +43,8 @@
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
     </div>
+
+    <!-- View image popup -->
     <section class="popup popup_style_view-image popup_role_view-image">
       <div class="popup__image-container">
         <img class="popup__image" alt="">
@@ -47,6 +52,8 @@
       <button type="button" class="popup__close-btn"></button>
       </div>
     </section>
+
+    <!-- Edit profile popup -->
     <section class="popup popup_role_edit-profile">
       <div class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
@@ -82,6 +89,8 @@
         <button type="button" class="popup__close-btn"></button>
       </div>
     </section>
+
+    <!-- Upload new card popup -->
     <section class="popup popup_role_add-card">
       <div class="popup__container">
         <h2 class="popup__heading">Новое место</h2>
@@ -115,15 +124,41 @@
         <button type="button" class="popup__close-btn"></button>
       </div>
     </section>
+
+    <!-- Delete confirmation popup -->
     <section class="popup popup_role_confirm">
       <div class="popup__container">
-        <h2 class="popup__heading">Вы уверены?</h2>
+        <h2 class="popup__heading popup__heading_style_without-input">Вы уверены?</h2>
         <form class="popup__form" name="confirmDelete" novalidate>
           <button class="popup__save-btn" type="submit">Да</button>
         </form>
         <button type="button" class="popup__close-btn"></button>
       </div>
     </section>
+
+    <!-- Change avatar popup -->
+    <section class="popup popup_role_change-avatar">
+      <div class="popup__container">
+        <h2 class="popup__heading">Обновить аватар</h2>
+        <form name="changeAvatar" class="popup__form" novalidate>
+          <input
+            name="avatar"
+            id="avatarLink-input"
+            type="url"
+            class="popup__input-form popup__input-form_type_avatar-link"
+            placeholder="Ссылка на аватар"
+            required
+          />
+          <div class="popup__input-error-container">
+            <span class="popup__input-error" id="avatarLink-input-error"></span>
+          </div>
+          <button type="submit" class="popup__save-btn">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-btn"></button>
+      </div>
+    </section>
+
+    <!-- Card template -->
     <template id="card">
       <li class="cards__item">
         <button type="button" class="cards__delete-btn" aria-label="Удалить"></button>

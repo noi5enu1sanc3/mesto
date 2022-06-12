@@ -1,3 +1,4 @@
+import { elementsConfigPopup } from "../utils/constants.js";
 import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
   constructor({popupSelector, elementsConfig, handleFormSubmit, shouldReset}) {
@@ -8,6 +9,7 @@ export default class PopupWithForm extends Popup {
 
     this._form = this._popup.querySelector(elementsConfig.formSelector);
     this._inputs = this._form.querySelectorAll(elementsConfig.inputSelector);
+    this._submitButton = this._form.querySelector(elementsConfig.submitButtonSelector);
   }
 
   _getInputValues() {
@@ -22,6 +24,10 @@ export default class PopupWithForm extends Popup {
     if (this._shouldReset) {
       this._form.reset();
     }
+  }
+
+  renderButtonText(text) {
+    this._submitButton.textContent = text;
   }
 
   setEventListeners() {

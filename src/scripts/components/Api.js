@@ -36,6 +36,7 @@ export default class Api {
       body: JSON.stringify({
         name: data.name,
         about: data.about,
+        avatar: data.avatar
       }),
     })
     .then((res) => this._getResponse(res));
@@ -60,7 +61,7 @@ export default class Api {
     return fetch(`${this._baseUrl}${this._id}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        authorization: this._token
+        authorization: this._token,
       }
     })
     .then(res => this._getResponse(res));
@@ -84,5 +85,19 @@ export default class Api {
       }
     })
     .then(res => this._getResponse(res));
+  }
+
+  changeAvatar(data) {
+    return fetch(`${this._baseUrl}${this._id}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: data.avatar
+    })
+    })
+    .then(res => this._getResponse(res))
   }
 }
