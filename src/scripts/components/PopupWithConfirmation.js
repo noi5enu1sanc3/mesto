@@ -14,20 +14,19 @@ export default class PopupWithConfirmation extends Popup {
 
   open(card) {
     this._card = card;
-    this._popup.querySelector(this._elementsConfig.formSelector).addEventListener('submit', this._submitHandler);
     super.open();
   }
-
-  close() {
-    this._popup.querySelector(this._elementsConfig.formSelector).removeEventListener('submit', this._submitHandler);
-    super.close();
-  }
-
+  
   getCardId() {
     return this._card._id;
   }
 
-renderButtonText(text) {
-  this._submitButton.textContent = text;
-}
+  renderButtonText(text) {
+    this._submitButton.textContent = text;
+  }
+
+  setEventListeners() {
+    this._popup.querySelector(this._elementsConfig.formSelector).addEventListener('submit', this._submitHandler);
+    super.setEventListeners();
+  }
 }

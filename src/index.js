@@ -54,7 +54,7 @@ function getCard(item) {
     },
     cardTemplateId,
     elementsConfigCard,
-    userInfo
+    userInfo.getId()
   );
   return card.renderCard();
 }
@@ -109,7 +109,6 @@ const initiallyRenderedCards = new Section(
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userinfo, cards]) => {
     userInfo.setUserInfo(userinfo);
-    userInfo.setAvatar(userinfo);
     initiallyRenderedCards.renderItems(cards);
   })
   .catch(err => console.log(err));
@@ -139,7 +138,7 @@ const popupChangeAvatar = new PopupWithForm({
     popupChangeAvatar.renderButtonText('Сохранение...');
     api
       .changeAvatar(inputsData)
-      .then(data => userInfo.setAvatar(data))
+      .then(data => userInfo.setUserInfo(data))
       .then(() => popupChangeAvatar.close())
       .catch((err) => console.log(err))
       .finally(() => popupChangeAvatar.renderButtonText('Сохранить'))

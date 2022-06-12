@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({data, handleCardClick, handleLike, handleDelete}, templateSelector, elementsConfig, user) {
+  constructor({data, handleCardClick, handleLike, handleDelete}, templateSelector, elementsConfig, userId) {
     this._data = data;
     this._link = data.link;
     this._name = data.name;
@@ -13,7 +13,7 @@ export default class Card {
 
     this._elementsConfig = elementsConfig;
 
-    this._user = user._id;
+    this._user = userId;
     this._owner = data.owner._id;
 
     this._handleCardClick = this._handleCardClick.bind(this._element);
