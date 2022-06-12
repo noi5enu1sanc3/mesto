@@ -59,22 +59,6 @@ function getCard(item) {
   return card.renderCard();
 }
 
-//-------function creating section and rendering initial cards-------
-function renderInitialCards(cards) {
-  const initiallyRenderedCards = new Section(
-    {
-      items: cards,
-      renderer: (item) => {
-        const card = getCard(item);
-        initiallyRenderedCards.addItem(card, false);
-      },
-    },
-    cardsListContainerSelector
-  );
-
-  initiallyRenderedCards.renderItems();
-}
-
 //-------function sending likes and dislikes to server-------
 function handleLike(card) {
   if (card.isLiked()) {
@@ -112,12 +96,22 @@ const userInfo = new UserInfo({
   avatarSelector: avatarSelector,
 });
 
+//-------init section-------
+const initiallyRenderedCards = new Section(
+  { renderer: (item) => {
+      const card = getCard(item);
+      initiallyRenderedCards.addItem(card, false);
+    },
+  },
+  cardsListContainerSelector
+);
+
 //-------get user info and cards info from server and then set user info and render cards
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userinfo, cards]) => {
     userInfo.setUserInfo(userinfo);
     userInfo.setAvatar(userinfo);
-    renderInitialCards(cards);
+    initiallyRenderedCards.renderItems(cards);
   })
   .catch(err => console.log(err));
 
