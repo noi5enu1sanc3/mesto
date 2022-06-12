@@ -77,15 +77,14 @@ function handleLike(card) {
 //-------init api-------
 const api = new Api(
   {
-    token: "e0205997-951b-4911-8a29-7b97b6aecfba",
-    id: "cohort-43",
-  },
-  {
-    baseUrl: "https://nomoreparties.co/v1/",
     headers: {
       authorization: "e0205997-951b-4911-8a29-7b97b6aecfba",
       "Content-Type": "application/json",
     },
+    id: "cohort-43",
+  },
+  {
+    baseUrl: "https://nomoreparties.co/v1/"
   }
 );
 
@@ -126,6 +125,7 @@ const popupConfirmDelete = new PopupWithConfirmation(
     api
       .deleteCard(card.getCardId())
       .then(() => card.deleteCard())
+      .then(() => popupConfirmDelete.close())
       .catch((err) => console.log(err))
       .finally(() => popupConfirmDelete.renderButtonText('Да'))
 });
@@ -140,6 +140,7 @@ const popupChangeAvatar = new PopupWithForm({
     api
       .changeAvatar(inputsData)
       .then(data => userInfo.setAvatar(data))
+      .then(() => popupChangeAvatar.close())
       .catch((err) => console.log(err))
       .finally(() => popupChangeAvatar.renderButtonText('Сохранить'))
   },
@@ -171,6 +172,7 @@ const popupCardSubmit = new PopupWithForm({
         return getCard(data)
       })
       .then((card) => initiallyRenderedCards.addItem(card, true))
+      .then(() => popupCardSubmit.close())
       .catch((err) => console.log(err))
       .finally(() => popupCardSubmit.renderButtonText('Создать'))
   },
@@ -188,6 +190,7 @@ const popupUserInfoSubmit = new PopupWithForm({
     api
       .setUserInfo(inputsData)
       .then((data) => userInfo.setUserInfo(data))
+      .then(() => popupUserInfoSubmit.close())
       .catch((err) => console.log(err))
       .finally(() => popupUserInfoSubmit.renderButtonText('Сохранить'))
   },

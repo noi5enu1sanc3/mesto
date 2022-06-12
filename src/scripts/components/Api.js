@@ -1,6 +1,6 @@
 export default class Api {
-  constructor({ token, id }, options) {
-    this._token = token;
+  constructor({ headers, id }, options) {
+    this._headers = headers;
     this._id = id;
     this._baseUrl = options.baseUrl;
   }
@@ -10,18 +10,14 @@ export default class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}${this._id}/users/me`, {
-      headers: {
-        authorization: this._token,
-      },
+      headers: this._headers,
     })
     .then((res) => this._getResponse(res));
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}${this._id}/cards`, {
-      headers: {
-        authorization: this._token,
-      },
+      headers: this._headers,
     })
     .then((res) => this._getResponse(res));
   }
@@ -29,10 +25,7 @@ export default class Api {
   setUserInfo(data) {
     return fetch(`${this._baseUrl}${this._id}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: this._token,
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -45,10 +38,7 @@ export default class Api {
   uploadNewCard(data) {
     return fetch(`${this._baseUrl}${this._id}/cards`, {
       method: "POST",
-      headers: {
-        authorization: this._token,
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -60,9 +50,7 @@ export default class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}${this._id}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this._token,
-      }
+      headers: this._headers
     })
     .then(res => this._getResponse(res));
   }
@@ -70,9 +58,7 @@ export default class Api {
   addLike(cardId) {
     return fetch(`${this._baseUrl}${this._id}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers
     })
     .then(res => this._getResponse(res));
   }
@@ -80,9 +66,7 @@ export default class Api {
   removeLike(cardId) {
     return fetch(`${this._baseUrl}${this._id}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: {
-        authorization: this._token
-      }
+      headers: this._headers
     })
     .then(res => this._getResponse(res));
   }
@@ -90,10 +74,7 @@ export default class Api {
   changeAvatar(data) {
     return fetch(`${this._baseUrl}${this._id}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: this._token,
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar
     })
