@@ -1,10 +1,11 @@
-# Проект: Место
+# Mesto
+Instagram clone build with vanilla JavaScript
 
-### Обзор
+Adding and deleting photos, likes, updating user profile
 
-* HTML, CSS
+* Semantic HTML, CSS
 * Flexbox
-* Responsive design
+* Responsive layout
 * JavaScript
 
 [View project](https://noi5enu1sanc3.github.io/mesto/)
